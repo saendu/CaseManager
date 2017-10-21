@@ -1,0 +1,6 @@
+D:\Git\CaseManager\CaseManager\bin\Debug\CaseManager.dll
+D:\Git\CaseManager\CaseManager\bin\Debug\CaseManager.pdb
+D:\Git\CaseManager\CaseManager\obj\Debug\CaseManager.csprojResolveAssemblyReference.cache
+D:\Git\CaseManager\CaseManager\obj\Debug\CaseManager.csproj.CoreCompileInputs.cache
+D:\Git\CaseManager\CaseManager\obj\Debug\CaseManager.dll
+D:\Git\CaseManager\CaseManager\obj\Debug\CaseManager.pdb
