@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CaseManager
 {
@@ -11,8 +12,9 @@ namespace CaseManager
     
     public class Case
     {
-        private IScopeDefinition _scopeDefinition; 
-        private ICaseHandler _caseHandler; 
+        private readonly IScopeDefinition _scopeDefinition; 
+        private readonly ICaseHandler _caseHandler;
+        private static readonly object ThisLock = new object();
 
         public Case(IScopeDefinition scopeDefinition, ICaseHandler caseHandler)
         {
@@ -40,9 +42,9 @@ namespace CaseManager
             args.ToList().ForEach(c => {
                 try
                 {
-                    //TODO: collection that only accepts one true
-                    //var onlyOneTrue = c.IsInScope && notLareadyTrueInList; 
-                    //if(c.IsInScope) _caseList.Add(c);
+                    // Maybe we want to change this to only allow one true at a time
+                    // var onlyOneTrue = c.IsInScope && notLareadyTrueInList; 
+                    // if(c.IsInScope) _caseList.Add(c);
                     _caseList.Add(c);
                 }
                 catch (Exception)
@@ -54,8 +56,9 @@ namespace CaseManager
             
         }
 
-        public void ExecuteInScopeCases() {
-            _caseList.Where(c => c.IsInScope == true).ToList().ForEach(cc => cc.ExecuteIfInScope());
+        public async Task ExecuteInScopeCasesAsync() {
+            var casesInScope = _caseList.Where(c => c.IsInScope).ToList();
+            await Task.Run(() => Parallel.ForEach(casesInScope, c => c.ExecuteIfInScope())); // potential long running job
         }
     }
 
