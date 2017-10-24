@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading;
-using CaseManager;
 
-namespace ConsoleApp
+namespace CaseManager
 {
     public static class Program
     {
@@ -12,7 +11,7 @@ namespace ConsoleApp
             var onPremCase = new Case(new OnPremScope(), new OnPremHandler());
             var newCustomerCase = new Case(new FreshTenantScope(), new FreshTenantHandler());
 
-            var caseManager = new CaseManager.CaseManager(cloudCase, onPremCase, newCustomerCase);
+            var caseManager = new CaseManager(cloudCase, onPremCase, newCustomerCase);
             var t = caseManager.ExecuteInScopeCasesAsync();
             Thread.Sleep(5000);
         }
