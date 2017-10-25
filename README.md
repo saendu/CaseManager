@@ -1,5 +1,5 @@
 # CaseManager
-The Case Manager liblary is a helper class for the CDD (case-driven development) best practice. 
+The Case Manager liblary is a helper class for the CDD (case-driven development) based on the strategy design pattern. 
 
 ## Create cases
 ```C#
